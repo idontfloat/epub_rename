@@ -19,7 +19,13 @@ def log_info(message, quiet=False):
 	if not quiet:
 		print(message)
 
-def get_metadata(ebook, field):
+def get_ebook_title(ebook):
+	return get_ebook_metadata(ebook, "title")
+
+def get_ebook_author(ebook):
+	return get_ebook_metadata(ebook, "creator")
+
+def get_ebook_metadata(ebook, field):
 	metadata = ebook.get_metadata("DC", field)
 	return metadata[0][0] if metadata else None
 
@@ -47,11 +53,13 @@ def rename_ebook(template, ebook_file, dry_run=False, quiet=False):
 		logger.error(f"Unable to open '{ebook_file}' as epub", exc_info=True)
 		return
 	
-	ebook_title = get_metadata(ebook, "title")
-	ebook_author = get_metadata(ebook, "creator")
+	ebook_title = get_ebook_title(ebook)
+	ebook_author = get_ebook_author(ebook)
 
-	if not ebook_title or not ebook_author:
-		log_info(f"Could not find metadata for '{ebook_file}', skipping", quiet)
+	if not ebook_title:
+		log_info(f"Could not find title metadata for '{ebook_file}', skipping", quiet)
+	elif not ebook_author:
+		log_info(f"Could not find author metadata for '{ebook_file}', skipping", quiet)
 	else:
 		log_info(f"Title: {ebook_title} | Author: {ebook_author}", quiet)
 
@@ -94,7 +102,7 @@ def main():
 			for ebook_file in ebook_files:
 				rename_ebook(args.name, ebook_file, args.dry_run, args.quiet)
 		else:
-			logger.error(f"Invalid path: {path}, skipping")
+			logger.error(f"Invalid path: '{path}', skipping")
 
 if __name__ == "__main__":
 	main()
