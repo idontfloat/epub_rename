@@ -1,5 +1,5 @@
 # EPUB Rename
-This script will extract EPUB title and author metadata and rename the file as `<title>.epub`, `<title> - <author>.epub` or `<author> - <title>.epub`.
+Script `epub_rename.py` will extract EPUB title and author metadata and rename the file as `<title>.epub`, `<title> - <author>.epub` or `<author> - <title>.epub`.
 
 ## Usage
 All EPUB files in the current working directory will be renamed. This can be changed by listing files or directories with `-p`, `--paths` or without a flag. A mix of files and directories can be listed. If a directory is passed all contained EPUB files will be renamed (subdirectories will be ignored).
@@ -9,3 +9,10 @@ By default files will be renamed as `<title>.epub`. The arument `-n` or `--name`
 Use `-q` or `--quiet` to suppress info messages.
 
 Use `--dry-run` to list changes without renaming.
+
+## Update metadata
+Additional script `epub_update_metadata.py` can be used to update metadata for a specified EPUB file. Currently, only title and/or author are supported.
+
+Supply a valid EPUB with `p`, `--path`. Specifiy title with `-t`, `--title` and/or author with `a`, `--author`.
+
+Use `-q` or `--quiet` to suppress info messages.
