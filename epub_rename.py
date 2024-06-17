@@ -58,7 +58,7 @@ def rename_ebook(template, ebook_file, dry_run=False, quiet=False):
 
 	if not ebook_title:
 		log_info(f"Could not find title metadata for '{ebook_file}', skipping", quiet)
-	elif not ebook_author:
+	elif not ebook_author and template != "t":
 		log_info(f"Could not find author metadata for '{ebook_file}', skipping", quiet)
 	else:
 		log_info(f"Title: {ebook_title} | Author: {ebook_author}", quiet)
