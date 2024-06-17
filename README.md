@@ -4,6 +4,8 @@ This script will extract EPUB title and author metadata and rename the file as `
 ## Usage
 All EPUB files in the current working directory will be renamed. This can be changed by listing files or directories with `-p`, `--paths` or without a flag. A mix of files and directories can be listed. If a directory is passed all contained EPUB files will be renamed (subdirectories will be ignored).
 
-By default files will be renamed as `<title>.epub`. The arument -n or --name can be used to change the naming template with options `t` for `<title>.epub`, `ta` for `<title> - <author>.epub` or `at` for `<author> - <title>.epub`.
+By default files will be renamed as `<title>.epub`. The arument `-n` or `--name` can be used to change the naming template with options `t` for `<title>.epub`, `ta` for `<title> - <author>.epub` or `at` for `<author> - <title>.epub`.
 
-Use `-q` or `--quiet` to suppress info messages. Use `--dry-run` to list changes without renaming.
+Use `-q` or `--quiet` to suppress info messages.
+
+Use `--dry-run` to list changes without renaming.
